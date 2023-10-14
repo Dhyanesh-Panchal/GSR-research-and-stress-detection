@@ -1,0 +1,1 @@
+- CASE 2019 Dataset Link : https://springernature.figshare.com/articles/dataset/CASE_Dataset-full/8869157?backTo=/collections/A_dataset_of_continuous_affect_annotations_and_physiological_signals_for_emotion_analysis/4260668
