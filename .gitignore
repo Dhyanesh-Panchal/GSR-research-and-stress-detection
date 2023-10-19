@@ -2,3 +2,5 @@ env/*
 CASE_Full/*
 CASE_Full.zip
 .ipynb_checkpoints/*
+.pyEDA/
+gsr data.zip
