@@ -9,11 +9,11 @@ class Processing:
 
     @staticmethod
     def maximum_absolute_scaling(data: pd.DataFrame, colum_names):
-        for colum_name in colum_names:
+        for colum_name in bar(colum_names, desc="Scaling column values"):
             # shift the data to zero mean
             data[colum_name] = data[colum_name] - np.mean(data[colum_name])
             # divide by max +ve value present to get in range [-1,1]
-            print(np.max(data[colum_name].abs()))
+            # print(np.max(data[colum_name].abs()))
             data[colum_name] = data[colum_name] / \
                 np.max(np.absolute(data[colum_name]))
 
