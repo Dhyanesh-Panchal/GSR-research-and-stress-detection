@@ -1,3 +1,13 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "figsize",
+        "fontsize",
+        "linestyle",
+        "linewidth",
+        "markersize",
+        "xticks",
+        "ylabel",
+        "yticks"
+    ]
 }
