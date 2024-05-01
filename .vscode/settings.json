@@ -6,6 +6,7 @@
         "linestyle",
         "linewidth",
         "markersize",
+        "relu",
         "xticks",
         "ylabel",
         "yticks"
