@@ -42,3 +42,24 @@ class Processing:
         else:
             return df
         return window_df
+
+    
+    @staticmethod
+    def prepare_data(subject_ID):
+        def _pre_process(df: pd.DataFrame):
+            phasic_windowed = Processing.generate_windows_df(df, window_size=100, window_gap=1, column_name="EDA_Phasic")
+
+            X = np.array(phasic_windowed).reshape(len(phasic_windowed),100,1)
+            # inserted the initial arousal value during the "start" of window
+            # X = np.concatenate((X,np.array(df['class_2_arousal'][99:]).reshape(len(df['class_2_arousal']) - 99,1,1)) , axis=1)
+
+            y = np.array(df["class_2_arousal"])[99:]
+
+            return X,y
+        data_df = pd.read_csv(f"https://raw.githubusercontent.com/Dhyanesh-Panchal/GSR-research-and-stress-detection/master/preprocessed_data/sub_{subject_ID}.csv").drop("Unnamed: 0",axis=1)
+        data_df = data_df[data_df["video"].isin([5,6,7,8])]
+        filtered_data = data_df[(data_df["arousal"]!=5) & (data_df["valence"]!=5)]
+        filtered_data = filtered_data.reset_index().drop("index",axis=1)
+        X,y = _pre_process(filtered_data)
+        y = pd.get_dummies(y)
+        return X,y
