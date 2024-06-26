@@ -14,7 +14,6 @@ class LSTM_Phasic:
     def __init__(self):
         self.model = None
         self.model_weights_path = './models/LSTM_Phasic_window_mixed_p5.h5'
-        self.model = self.load_model()
         self.input_shape = (100, 1)
         self.model = keras.Sequential()
         self.model.add(keras.layers.LSTM(64, input_shape=self.input_shape, return_sequences=True))
@@ -59,16 +58,21 @@ class Prepare_Data:
         data = pd.read_csv(source_data_fp)
         # Filter Shorted Conditions(Values >600)
         data = data[data["GSR"] < 600]
-        data = data[::100]
+        
+        # todo: uncomment this line
+        # data = data[::100]
+        
         data["skin_resistance"] = data["GSR"].apply(convert_eq)
         # data.to_csv(os.path.join(destination_folder, file_name), index=False)
 
         processed_data = eda_process(
             data["skin_resistance"], sampling_rate=20, method="neurokit"
         )[0]
+        processed_data.to_csv(os.path.join("Collected_Data","Features", file_name), index=False)
 
         # Prepare for model
         phasic_windowed = self.processing.generate_windows_df(processed_data, window_size=self.window_size, window_gap=self.window_gap, column_name="EDA_Phasic")
+        print(np.array(phasic_windowed).shape)
         X = np.array(phasic_windowed).reshape(len(phasic_windowed),100,1)
         
         return X
