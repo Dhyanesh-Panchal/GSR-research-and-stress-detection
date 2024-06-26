@@ -10,7 +10,7 @@ from LSTM_on_Collected_data import LSTM_Phasic, Prepare_Data
 # # Collect Data
 # data_file_path = main()
 
-data_file_path = "./Collected_Data/Calm_Tirth.csv"
+data_file_path = "./Collected_Data/Horror_Srushti.csv"
 
 # %%
 # Prepare Data
@@ -30,5 +30,7 @@ predictions = lstm.predict(X)
 print(predictions)
 
 # histogram
-plt.hist(predictions)
+plt.figure(figsize = (10,2))
+plt.bar(x=np.arange(len(predictions)),height=predictions)
+plt.title("Arousal Histogram")
 plt.show()
