@@ -9,3 +9,4 @@ temp.ipynb
 temp.csv
 processed_data_all.csv
 random_forest.pkl
+__pycache__/
