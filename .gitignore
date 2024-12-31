@@ -10,3 +10,5 @@ temp.csv
 processed_data_all.csv
 *.pkl
 __pycache__/
+temporary_files/
+Latex_files/
